@@ -1,10 +1,10 @@
 # 0x2a-Alhosn-Daily-Login
 
-## Daily sign-in based on Al Hosn green pass:
+## **Daily sign-in based on Al Hosn green pass:**
 
-Idea: This application will make calls to Alhosn using scanned user QR code and compare the response with the 42API stored name of student. This will allow the student to sign-in and validate greenpass via security by simply scanning their Alhosn QR code.
+**Idea:** This application will make calls to Alhosn using scanned user QR code and compare the response with the 42API stored name of student. This will allow the student to sign-in and validate greenpass via security by simply scanning their Alhosn QR code.
 
-Members:
+**Members:**
 
 1. Mohamed- mohouhou
 2. Hussain - hawadh
