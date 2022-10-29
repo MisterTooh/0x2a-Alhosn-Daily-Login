@@ -1,8 +1,9 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, Param } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { CreateStudentDto } from './dto/create-student-dto'
-import { Student } from './entity/student.entity'
+import { UpdateStudentDto } from './dto/update-student-to'
+import { Student } from './entities/student.entity'
 
 @Injectable()
 export class StudentService {
@@ -11,19 +12,29 @@ export class StudentService {
         private studentRepository: Repository<Student>
     ) {}
 
-    async createMany(createStudent: CreateStudentDto) {
-        this.studentRepository.create(createStudent)
+    private async findOrCreate(addStudent: CreateStudentDto, cardId: string) {
+        const student = await this.studentRepository.findOneBy({ cardId })
+
+        if (student) {
+            return student
+        }
+        return this.studentRepository.create(addStudent)
     }
 
-    findOne(cardId: string): Promise<Student> {
-        return this.studentRepository.findOneBy({ cardId })
+    async createStudent(cardId: string, addStudent: CreateStudentDto) {
+        const student = this.findOrCreate(addStudent, addStudent.cardId)
     }
 
-    editStudent(cardId: string, req: Request): Promise<Student> {
+    findOne(@Param() cardId: string) {
+        const student = this.studentRepository.findOneBy({ cardId })
+        return { student }
+    }
+
+    editStudent(@Param() cardId: string, editStudent: UpdateStudentDto) {
         return
     }
 
-    async remove(cardId: string): Promise<void> {
+    async remove(@Param() cardId: string): Promise<void> {
         await this.studentRepository.delete(cardId)
     }
 }
