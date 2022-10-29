@@ -4,7 +4,7 @@ import { Entity, Column, PrimaryColumn, OneToMany } from 'typeorm'
 @Entity()
 export class Student {
     @PrimaryColumn()
-    @OneToMany((cardId) => DailyLogin, (cardId) => cardId.cardId)
+    // @OneToMany((cardId) => DailyLogin, (cardId) => cardId.cardId)
     cardId: string
 
     @Column()

@@ -12,21 +12,22 @@ export class StudentService {
         private studentRepository: Repository<Student>
     ) {}
 
-    private async findOrCreate(addStudent: CreateStudentDto, cardId: string) {
+    private async findOrCreate(studentDto: CreateStudentDto, cardId: string) {
         const student = await this.studentRepository.findOneBy({ cardId })
-
         if (student) {
-            return student
+            return 'Error: Already Exists'
+        } else
+            return await { studentDto: this.studentRepository.save(studentDto) }
+    }
+
+    async createStudent(req: Request, studentDto: CreateStudentDto) {
+        return {
+            student: await this.findOrCreate(studentDto, studentDto.cardId)
         }
-        return this.studentRepository.create(addStudent)
     }
 
-    async createStudent(cardId: string, addStudent: CreateStudentDto) {
-        const student = this.findOrCreate(addStudent, addStudent.cardId)
-    }
-
-    findOne(@Param() cardId: string) {
-        const student = this.studentRepository.findOneBy({ cardId })
+    async findOne(@Param() cardId: string) {
+        const student = await this.studentRepository.findOneBy({ cardId })
         return { student }
     }
 
