@@ -3,7 +3,6 @@ import requests
 import json
 from fake_useragent import UserAgent
 import cv2
-import webbrowser
 # A = Alhosn() # To make it easier for ourselves, define Alhosn and use it anywhere.
 
 # A.phone = "+971585030519" # Defining a phone number, you can do it here or from Alhosn class directly.
@@ -19,6 +18,9 @@ import webbrowser
 # print("---------------LOGIN------------------")
 # A.login(otp=code)  # The login method will take the otp code and the rest of info given
 #                     # Previously and will generate a Token, for future use.
+#first scan a users id badge 
+# then make a get request to server database
+# return response containing uid
 vid = cv2.VideoCapture(0)
 detector = cv2.QRCodeDetector()
 while(1):
