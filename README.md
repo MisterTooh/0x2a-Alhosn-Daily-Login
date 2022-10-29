@@ -12,7 +12,6 @@ Students can seemlessly log attendance.
 Students no longer need to attempt login before identifying account status.
 Students can take immediate action if account status is locked.
 
-
 **Members:**
 
 1. Mohamed- mohouhou

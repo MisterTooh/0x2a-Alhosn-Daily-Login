@@ -1,23 +1,29 @@
-import { Injectable, Req } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { Student } from './entity/student.entity';
+import { Injectable } from '@nestjs/common'
+import { InjectRepository } from '@nestjs/typeorm'
+import { Repository } from 'typeorm'
+import { CreateStudentDto } from './dto/create-student-dto'
+import { Student } from './entity/student.entity'
 
 @Injectable()
 export class StudentService {
-  constructor(
-    @InjectRepository(Student) private studentRepository: Repository<Student>,
-  ) {}
+    constructor(
+        @InjectRepository(Student)
+        private studentRepository: Repository<Student>
+    ) {}
 
-  findOne(cardId: string): Promise<Student> {
-    return;
-  }
+    async createMany(createStudent: CreateStudentDto) {
+        this.studentRepository.create(createStudent)
+    }
 
-  editStudent(cardId: string, req: Request): Promise<Student> {
-    return;
-  }
+    findOne(cardId: string): Promise<Student> {
+        return this.studentRepository.findOneBy({ cardId })
+    }
 
-  async remove(cardId: number | string): Promise<void> {
-    await this.studentRepository.delete(cardId);
-  }
+    editStudent(cardId: string, req: Request): Promise<Student> {
+        return
+    }
+
+    async remove(cardId: string): Promise<void> {
+        await this.studentRepository.delete(cardId)
+    }
 }

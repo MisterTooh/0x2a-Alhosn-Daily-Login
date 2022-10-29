@@ -1,25 +1,25 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, Column, PrimaryColumn } from 'typeorm'
 
 @Entity()
 export class Student {
-  @PrimaryGeneratedColumn()
-  cardId: string;
+    @PrimaryColumn()
+    cardId: string
 
-  @Column()
-  name: string;
+    @Column()
+    name: string
 
-  @Column()
-  loginName?: string;
+    @Column()
+    loginName?: string
 
-  @Column()
-  UID: number;
+    @Column()
+    UID: number
 
-  @Column()
-  eid?: number;
+    @Column()
+    eid?: number
 
-  @Column()
-  alhosnStatus?: string;
+    @Column()
+    alhosnStatus?: string
 
-  @Column()
-  student: boolean;
+    @Column()
+    student: boolean
 }
