@@ -12,6 +12,7 @@ from fake_useragent import UserAgent
 import os
 import re
 import json
+from requests_cache import CachedSession
 
 #<------Logging Section------>
 logging.root.setLevel(logging.DEBUG)
@@ -68,6 +69,8 @@ class Alhosn(object):
         self.ut = None
         self.passlist = None
         self. results = None
+        self.cookie = None
+        self.session = None
 
     def __iter__(self):
         """
@@ -281,12 +284,14 @@ class Alhosn(object):
             "uid": eid,
             "phone": phone
         }
+        self.session = requests.Session()
         try:
-            response = requests.post(smsurl, json=data, headers={'User-Agent': UserAgent().random})
-        except requests.exceptions.RequestException as e:
+            response = self.session.post(smsurl, json=data, headers={'User-Agent': UserAgent().random})
+        except self.session.exceptions.RequestException as e:
             log.error(e)
             raise SystemExit()
         #print("hellooooo")
+        self.cookie = response.cookies
         print(response.text)
         if response.status_code != 200:
             # log.error("Can't Connect to the network")
@@ -370,14 +375,13 @@ class Alhosn(object):
             "phone": phone,
             "code": otp
         }
-
+        #requests_cache.install_cache('test_cache', expire_after=120)
+        
         try:
-            response = requests.post(loginurl, json=data, headers={'User-Agent': UserAgent().random})
-        except requests.exceptions.RequestException as e:
+            response = self.session.post(loginurl, json=data, headers={'User-Agent': UserAgent().random})
+        except self.session.exceptions.RequestException as e:
             log.error(e)
             raise SystemExit()
-        print(response.text)
-
         if response.status_code != 200:
             raise AlHosnNetworkERROR("Can't Connect to the network")
 
@@ -411,7 +415,7 @@ class Alhosn(object):
 
         
 
-    def result(self, display=False, save_photo:str=None):
+    def result(self, display=False, qr:str=None):
         """
         Method used to gather result in a dictionary type, and can display content in command propmt if user wants so,
         and able to save the user photo
@@ -420,53 +424,77 @@ class Alhosn(object):
         :param save_photo: save the user photo
         :return: status code
         """
-
+        if qr is None:
+            return
         params = {
-            'uid': self.uid
+            'suffix': "6072",
+            'qrcode':qr
         }
-        headers = {
-            'User-Agent': UserAgent().random,
-            'token': self.token
-        }
+        headers={
+            'accept': 'application/json, text/plain, */*',
+            'accept-encoding': 'gzip, deflate, br',
+            'accept-language': 'en',
+            'client-type': 'web',
+            'content-type': 'application/json;charset=UTF-8',
+            'origin': 'https://m.alhosnapp.ae',
+            'referer': 'https://m.alhosnapp.ae/',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1',
+            'version': '3.3.9'
+            }
+        print("TRYING TO ACCESS QRCODE LINK")
+        r = self.session.post("https://m.alhosnapp.ae/greencode/public/qrcodeverify",headers=headers,params=params)
 
-        resulturl = self.url.format("pass", "results")
-        print("hello")
-        try:
-            response = requests.get(resulturl, headers=headers, params=params)
-        except requests.exceptions.RequestException as e:
-            log.error(e)
-            raise SystemExit()
-        print("hellooo")
-        print(response.text)
+        print(r.text)
 
-        status = None
-        response_msg = None
-        self.results = response.json()['response']
-        #print(self.results)
-        for key, value in collections.OrderedDict(response.json()['responseHeader']).items():
-            if key in {'msg'}:
-                response_msg = value
-            if key in {'status'}:
-                status = value
+        # params = {
+        #     'uid': self.uid
+        # }
+        # headers = {
+        #     'User-Agent': UserAgent().random,
+        #     'token': self.token
+        # }
 
-        if response_msg is None: pass
-        else: log.warning(response_msg)
+        # resulturl = self.url.format("pass", "results")
+        # #print("hello")
+        # try:
+        #     response = requests.get(resulturl, headers=headers, params=params)
+        # except requests.exceptions.RequestException as e:
+        #     log.error(e)
+        #     raise SystemExit()
+        # #print("hellooo")
+        # #print(response.text)
+
+        # status = None
+        # response_msg = None
+        # self.results = response.json()['response']
+        # #print(self.results)
+        # for key, value in collections.OrderedDict(response.json()['responseHeader']).items():
+        #     if key in {'msg'}:
+        #         response_msg = value
+        #     if key in {'status'}:
+        #         status = value
+
+        # if response_msg is None: pass
+        # else: log.warning(response_msg)
 
 
-        if display:
-            if not self.results is None:
-                log.info(json.dumps(self.results, indent=2))
-            else: log.warning("There are no results")
+        # if display:
+        #     if not self.results is None:
+        #         log.info(json.dumps(self.results, indent=2))
+        #     else: log.warning("There are no results")
 
-        if not save_photo is None:
-            for key, value in collections.OrderedDict(response.json()['response']).items():
-                if key in {'photo'}:
-                    photoname = value
-                    imgdata = base64.b64decode(photoname)
-                    filename = '{}.jpg'.format(save_photo)
-                    with open(filename, 'wb') as f:
-                        f.write(imgdata)
-        return status
+        # if not save_photo is None:
+        #     for key, value in collections.OrderedDict(response.json()['response']).items():
+        #         if key in {'photo'}:
+        #             photoname = value
+        #             imgdata = base64.b64decode(photoname)
+        #             filename = '{}.jpg'.format(save_photo)
+        #             with open(filename, 'wb') as f:
+        #                 f.write(imgdata)
+        # return status
     def export_json(self):
         print(self.results["name"]["en"])
         print(self.results["code"])
