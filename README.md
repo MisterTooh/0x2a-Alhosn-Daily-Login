@@ -1,8 +1,17 @@
 # 0x2a-Alhosn-Daily-Login
 
-## **Daily sign-in based on Al Hosn green pass:**
+## **Daily sign-in based on Student ID with Al Hosn green pass:**
 
-**Idea:** This application will make calls to Alhosn using scanned user QR code and compare the response with the 42API stored name of student. This will allow the student to sign-in and validate greenpass via security by simply scanning their Alhosn QR code.
+**Idea:**
+This application will sign-in students who arrive at campus by scanning their ID Cards, while also calling the Al Hosn Green Pass Status.
+This application will display the student account status to identify if the student is currently locked out of their account.
+
+**Benefits:**
+Less paper waste.
+Students can seemlessly log attendance.
+Students no longer need to attempt login before identifying account status.
+Students can take immediate action if account status is locked.
+
 
 **Members:**
 
