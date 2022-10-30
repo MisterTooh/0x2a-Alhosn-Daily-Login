@@ -26,15 +26,16 @@ export default function Hero() {
     };
 
     //fetching data from "STUDENTID" from server 
-    const fetchStudentData = async event => {
+    const fetchStudentData = async () => {
         setLoading(true);
-        fetch('api/hello')
-        .then((res) => res.json())
-        .then((data) => {
-            setData(data);
-            setLoading(false);
-        });
-        console.log('handleClick 👉️', data);
+        var s = "http://localhost:3000/student/search"
+        const d =  await fetch(s)
+        console.log(d)
+        const dd = await d.json();
+       console.log(dd.student);    
+        setData(dd.student);
+        setLoading(false);
+        setStudentID('');
     };
 
     //Return while fatching
@@ -72,21 +73,21 @@ export default function Hero() {
                     <div>
                         <label className="block text-sm font-medium ">Card Id</label>
                         <div className="text-white bg-[#A3ABAA] px-8 py-2 rounded-lg text-xl font-bold flex items-center">
-                            {data.cardid}
+                            {data.cardId}
                         </div>
                     </div>
                     <div>
                         <label className="block text-sm font-medium ">UID</label>
                         <div className="text-white bg-[#A3ABAA] px-8 py-2 rounded-lg text-xl font-bold flex items-center">
-                         {data.uid}
+                         {data.UID}
                         </div>
                     </div>
-                    <div>
+                    {/* <div>
                         <label className="block text-sm font-medium ">DATE</label>
                         <div className="text-white bg-[#A3ABAA] px-8 py-2 rounded-lg text-xl font-bold flex items-center">
                          {data.date}
                         </div>
-                    </div>
+                    </div> */}
                 </div>
 
 
@@ -94,14 +95,14 @@ export default function Hero() {
                     <div>
                         <label className="block text-sm font-medium ">Full Name</label>
                         <div className="text-white bg-[#A3ABAA] px-8 py-2 rounded-lg text-xl font-bold flex items-center">
-                         {data.name}
+                         {data.fullName}
                         </div>
                     </div>
                     <div className="pt-12 max-w-[200px]">
                         <img src="images/profile.png" alt="Italian Trulli" />
                         <div className="text-center pt-14">
                             {
-                                data.alhosn_status
+                                data.alhosnStatus
                                 ? <h1 className="text-[#3AC710]">GREEN PASS</h1>
                                 : <h1 className="text-[#D72121]">NOT AUTHORIZED</h1>
                             }
@@ -114,19 +115,23 @@ export default function Hero() {
                     <div>
                         <label className="block text-sm font-medium ">INTRA LOGIN</label>
                         <div className="text-white bg-[#A3ABAA] px-8 py-2 rounded-lg text-xl font-bold flex items-center">
-                         {data.login}
+                         {data.loginName}
                         </div>
                     </div>
                     <div>
                         <label className="block text-sm font-medium ">STATUS</label>
                         <div className="text-white bg-[#A3ABAA] px-8 py-2 rounded-lg text-xl font-bold flex items-center">
-                         {data.status}
+                        {
+                                data.status
+                                ? <h1 className="">ACTIVE</h1>
+                                : <h1 className="">INACTIVE</h1>
+                            }
                         </div>
                     </div>
                     <div>
                         <label className="block text-sm font-medium ">Close Reason</label>
                         <div className="text-white bg-[#A3ABAA] px-8 py-2 rounded-lg text-xl font-bold flex items-center">
-                            {data.close_reason}
+                            {data.closeReason}
                         </div>
                     </div>
                 </div>

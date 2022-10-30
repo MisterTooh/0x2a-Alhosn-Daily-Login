@@ -31,11 +31,15 @@ export class StudentService {
         }
     }
 
+    // async findOne(@Param() cardId: string) {
+    //     const student = await this.studentRepository.findOneBy({ cardId })
+    //     return { student }
+    // }
+
     async findOne(@Param() cardId: string) {
         const student = await this.studentRepository.findOneBy({ cardId })
         return { student }
     }
-
     editStudent(cardId: string, editStudent: UpdateStudentDto) {
         return this.findAndUpdateStudent(cardId, editStudent)
     }

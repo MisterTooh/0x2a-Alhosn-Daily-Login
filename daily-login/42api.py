@@ -97,5 +97,5 @@ if __name__ == "__main__":
 	df4=df4[["loginName","fullName","imageUrl","status","closeReason"]]
 	print(df4)
 	out = df4.to_json(orient='records')
-	requests.get("localhost:3000/student/addArray",body=out)
-	print(out)
+	res=requests.post("http://localhost:3000/student/addarray",params=out)
+	print(res.text)
