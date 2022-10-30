@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, Param } from '@nestjs/common'
+import { Injectable, Param } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { CreateStudentDto } from './dto/create-student-dto'
