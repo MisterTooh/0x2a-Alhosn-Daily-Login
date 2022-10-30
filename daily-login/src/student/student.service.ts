@@ -1,4 +1,4 @@
-import { Injectable, Param } from '@nestjs/common'
+import { Injectable, Param, Req } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { CreateStudentDto } from './dto/create-student-dto'
@@ -31,7 +31,7 @@ export class StudentService {
         }
     }
 
-    async findOne(@Param() cardId: string) {
+    async findOne(cardId: string) {
         const student = await this.studentRepository.findOneBy({ cardId })
         return { student }
     }

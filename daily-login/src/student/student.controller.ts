@@ -21,11 +21,10 @@ export class StudentController {
         @Req() req: Request,
         @Body() addStudent: CreateStudentDto
     ) {
-        console.log(req.body)
         return { student: this.studentService.createStudent(addStudent) }
     }
 
-    @Post('addarray')
+    @Post('addArray')
     async addArray(
         @Req() req: Request,
         @Body(
@@ -58,6 +57,6 @@ export class StudentController {
         @Body() findStudent: Student,
         @Param() cardId: string
     ) {
-        return this.studentService.findOne(findStudent.cardId)
+        return this.studentService.findOne(cardId)
     }
 }

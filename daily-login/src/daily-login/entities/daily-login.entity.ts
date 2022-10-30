@@ -3,11 +3,11 @@ import { PrimaryColumn, Column, OneToOne, Entity, Generated } from 'typeorm'
 
 @Entity()
 export class DailyLogin {
-    @PrimaryColumn()
-    @Generated('uuid')
-    uuid: any
+    // @PrimaryColumn()
+    // @Generated('uuid')
+    // uuid: any
 
-    @Column()
+    @PrimaryColumn()
     @OneToOne((cardId) => Student, (cardId) => cardId.cardId)
     cardId: string
 

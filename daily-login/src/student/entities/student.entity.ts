@@ -4,11 +4,11 @@ import { Entity, Column, PrimaryColumn, OneToOne } from 'typeorm'
 @Entity()
 export class Student {
     @PrimaryColumn()
-    fullName: string
-
-    @Column()
     @OneToOne((cardId) => DailyLogin, (cardId) => cardId.cardId)
     cardId: string
+
+    @Column()
+    fullName: string
 
     @Column()
     loginName: string
