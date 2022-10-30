@@ -1,4 +1,6 @@
 # Importing Alhosn class
+from email.quoprimime import body_check
+from os import O_DSYNC
 import requests
 import json
 from fake_useragent import UserAgent
@@ -19,15 +21,20 @@ import cv2
 # A.login(otp=code)  # The login method will take the otp code and the rest of info given
 #                     # Previously and will generate a Token, for future use.
 #first scan a users id badge 
-badge = input("Scan ID Badge : ")
 # then make a get request to server database
 params = {
-            'suffix': "1216",
-            'qrcode':""
+            'cardId': "67803216feff12e000018ef3"
 }
-r = requests.get("localhost:3000",json=params)
+r = requests.get("http://localhost:3000/student/search",params=params)
 # return response containing uid
-
+print(r.text)
+full=r.json()["student"]["fullName"]
+UIDnum=r.json()["student"]["UID"]
+cardId=r.json()["student"]["cardId"]
+login=r.json()["student"]["loginName"]
+status=r.json()["student"]["status"]
+close=r.json()["student"]["closeReason"]
+print(UIDnum)
 #scan QR Code
 vid = cv2.VideoCapture(0)
 detector = cv2.QRCodeDetector()
@@ -42,7 +49,7 @@ cont = data.replace("go", "m", 1)
 print("---------------RESULT------------------")
 print(cont)
 params = {
-            'suffix': "1216",
+            'suffix': "0465",
             'qrcode':cont
 }
 headers={
@@ -67,10 +74,28 @@ results = r.json()['response']
 
 print(results["passResultList"][0]["code"])
 print(results["info"]["en"])
-data = {
-            "status": results["passResultList"][0]["code"],
-            "desc": results["info"]["en"]
+if results["passResultList"][0]["code"] ==  "Green":
+    data = {
+        "cardId":str(cardId),
+        "fullName": str(full),
+        "loginName": str(login),
+        "UID": int(UIDnum),
+        "alhosnStatus": True,
+        "status": True,
+        "closeReason":"N/A",
 }
+# else:
+#     data = {
+#         "cardId":str(cardId),
+#         "fullName": str(full),
+#         "loginName": str(login),
+#         "UID": int(UIDnum),
+#         "alhosnStatus": false,
+#         "status": true,
+#         "closeReason":"N/A",
+#         }
+r = requests.post("http://localhost:3000/student/add",json=data)
+print(r.text)
       #   data = {
       #       "name": self.results["name"]["en"],
       #       "status": self.results["code"],

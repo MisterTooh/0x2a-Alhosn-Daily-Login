@@ -6,8 +6,7 @@ import {
     Param,
     Req,
     ParseArrayPipe,
-    HttpCode,
-    HttpStatus
+    HttpCode
 } from '@nestjs/common'
 import { CreateStudentDto } from './dto/create-student-dto'
 import { UpdateStudentDto } from './dto/update-student-to'
@@ -57,9 +56,10 @@ export class StudentController {
     @HttpCode(200)
     async findStudent(
         @Req() req: Request,
-        @Body() findStudent: Student,
+        @Body() findStudent: Student
         @Param() cardId: string
     ) {
+        console.log(findStudent.cardId)
         return await this.studentService.findOne(findStudent.cardId)
     }
 
