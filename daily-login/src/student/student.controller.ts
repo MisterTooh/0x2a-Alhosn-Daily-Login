@@ -56,10 +56,9 @@ export class StudentController {
     @HttpCode(200)
     async findStudent(
         @Req() req: Request,
-        @Body() findStudent: Student
+        @Body() findStudent: Student,
         @Param() cardId: string
     ) {
-        console.log(findStudent.cardId)
         return await this.studentService.findOne(findStudent.cardId)
     }
 

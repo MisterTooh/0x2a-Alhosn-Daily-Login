@@ -38,7 +38,6 @@ export class StudentService {
 
     async findOne(@Param() cardId: string) {
         const student = await this.studentRepository.findOneBy({ cardId })
-        console.log(student)
         return { student }
     }
     editStudent(cardId: string, editStudent: UpdateStudentDto) {
