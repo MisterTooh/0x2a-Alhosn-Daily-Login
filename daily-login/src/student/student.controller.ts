@@ -1,4 +1,12 @@
-import { Body, Controller, Post, Get, Param, Req } from '@nestjs/common'
+import {
+    Body,
+    Controller,
+    Post,
+    Get,
+    Param,
+    Req,
+    ParseArrayPipe
+} from '@nestjs/common'
 import { CreateStudentDto } from './dto/create-student-dto'
 import { UpdateStudentDto } from './dto/update-student-to'
 import { Student } from './entities/student.entity'
@@ -13,16 +21,36 @@ export class StudentController {
         @Req() req: Request,
         @Body() addStudent: CreateStudentDto
     ) {
+        console.log(req.body)
         return { student: this.studentService.createStudent(addStudent) }
+    }
+
+    @Post('addarray')
+    async addArray(
+        @Req() req: Request,
+        @Body(
+            new ParseArrayPipe({
+                items: CreateStudentDto
+            })
+        )
+        addStudents: CreateStudentDto[]
+    ) {
+        for (const addStudent of addStudents) {
+            const student = this.studentService.createStudent(addStudent)
+        }
+        return {}
     }
 
     @Post('update')
     async updateStudent(
-        @Body()
-        @Param()
-        cardId: string,
-        updateStudent: UpdateStudentDto
-    ) {}
+        @Req() req: Request,
+        @Body() updateStudent: UpdateStudentDto
+    ) {
+        return this.studentService.editStudent(
+            updateStudent.cardId,
+            updateStudent
+        )
+    }
 
     @Get('search')
     async findStudent(
