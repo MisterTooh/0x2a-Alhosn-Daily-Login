@@ -1,9 +1,26 @@
+import { IsBoolean, IsNumber, IsOptional, IsString } from 'class-validator'
+
 export class CreateStudentDto {
-  cardId: string;
-  name: string;
-  loginName?: string;
-  UID: number;
-  eid?: number;
-  alhosnStatus?: string;
-  student: boolean;
+    @IsString()
+    cardId: string
+
+    @IsString()
+    fullName: string
+
+    @IsString()
+    loginName: string
+
+    @IsNumber()
+    UID: number
+
+    @IsBoolean()
+    @IsOptional()
+    alhosnStatus?: boolean
+
+    @IsBoolean()
+    status: boolean
+
+    @IsString()
+    @IsOptional()
+    closeReason?: string
 }

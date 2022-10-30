@@ -1,23 +1,41 @@
-import { Injectable, Req } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { Student } from './entity/student.entity';
+import { BadRequestException, Injectable, Param } from '@nestjs/common'
+import { InjectRepository } from '@nestjs/typeorm'
+import { Repository } from 'typeorm'
+import { CreateStudentDto } from './dto/create-student-dto'
+import { UpdateStudentDto } from './dto/update-student-to'
+import { Student } from './entities/student.entity'
 
 @Injectable()
 export class StudentService {
-  constructor(
-    @InjectRepository(Student) private studentRepository: Repository<Student>,
-  ) {}
+    constructor(
+        @InjectRepository(Student)
+        private studentRepository: Repository<Student>
+    ) {}
 
-  findOne(cardId: string): Promise<Student> {
-    return;
-  }
+    private async findOrCreate(studentDto: CreateStudentDto, cardId: string) {
+        const student = await this.studentRepository.findOneBy({ cardId })
+        if (student) {
+            throw new BadRequestException('Error: Already Exists')
+        } else
+            return await { studentDto: this.studentRepository.save(studentDto) }
+    }
 
-  editStudent(cardId: string, req: Request): Promise<Student> {
-    return;
-  }
+    createStudent(studentDto: CreateStudentDto) {
+        return {
+            student: this.findOrCreate(studentDto, studentDto.cardId)
+        }
+    }
 
-  async remove(cardId: number | string): Promise<void> {
-    await this.studentRepository.delete(cardId);
-  }
+    async findOne(@Param() cardId: string) {
+        const student = await this.studentRepository.findOneBy({ cardId })
+        return { student }
+    }
+
+    editStudent(@Param() cardId: string, editStudent: UpdateStudentDto) {
+        return
+    }
+
+    async remove(@Param() cardId: string): Promise<void> {
+        await this.studentRepository.delete(cardId)
+    }
 }
