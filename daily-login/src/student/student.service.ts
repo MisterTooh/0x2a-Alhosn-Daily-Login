@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, Param } from '@nestjs/common'
+import { Injectable, Param } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { CreateStudentDto } from './dto/create-student-dto'
@@ -12,10 +12,15 @@ export class StudentService {
         private studentRepository: Repository<Student>
     ) {}
 
+    private async findAndUpdateStudent(
+        cardId: string,
+        updateStudent: UpdateStudentDto
+    ) {}
+
     private async findOrCreate(studentDto: CreateStudentDto, cardId: string) {
         const student = await this.studentRepository.findOneBy({ cardId })
         if (student) {
-            throw new BadRequestException('Error: Already Exists')
+            return { student }
         } else
             return await { studentDto: this.studentRepository.save(studentDto) }
     }
@@ -31,8 +36,8 @@ export class StudentService {
         return { student }
     }
 
-    editStudent(@Param() cardId: string, editStudent: UpdateStudentDto) {
-        return
+    editStudent(cardId: string, editStudent: UpdateStudentDto) {
+        return this.findAndUpdateStudent(cardId, editStudent)
     }
 
     async remove(@Param() cardId: string): Promise<void> {

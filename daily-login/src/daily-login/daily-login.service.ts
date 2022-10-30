@@ -11,12 +11,11 @@ export class DailyLoginService {
         private dailyLoginRepository: Repository<DailyLogin>
     ) {}
 
-    async createDailyLogin(dailyLoginDto: CreateDailyLoginDto) {
+    createDailyLogin(dailyLoginDto: CreateDailyLoginDto) {
         const dateToday = new Date()
         dailyLoginDto.signIn = true
         dailyLoginDto.signInDate = dateToday
-        console.log(dateToday)
-        return await {
+        return {
             dailyLogin: this.dailyLoginRepository.save(dailyLoginDto)
         }
     }
