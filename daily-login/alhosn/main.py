@@ -19,8 +19,16 @@ import cv2
 # A.login(otp=code)  # The login method will take the otp code and the rest of info given
 #                     # Previously and will generate a Token, for future use.
 #first scan a users id badge 
+badge = input("Scan ID Badge : ")
 # then make a get request to server database
+params = {
+            'suffix': "1216",
+            'qrcode':""
+}
+r = requests.get("localhost:3000",json=params)
 # return response containing uid
+
+#scan QR Code
 vid = cv2.VideoCapture(0)
 detector = cv2.QRCodeDetector()
 while(1):
