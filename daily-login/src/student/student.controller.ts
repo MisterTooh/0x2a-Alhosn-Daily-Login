@@ -1,12 +1,4 @@
-import {
-    Body,
-    Controller,
-    Post,
-    Get,
-    RawBodyRequest,
-    Param,
-    Req
-} from '@nestjs/common'
+import { Body, Controller, Post, Get, Param, Req } from '@nestjs/common'
 import { CreateStudentDto } from './dto/create-student-dto'
 import { UpdateStudentDto } from './dto/update-student-to'
 import { Student } from './entities/student.entity'
@@ -21,7 +13,7 @@ export class StudentController {
         @Req() req: Request,
         @Body() addStudent: CreateStudentDto
     ) {
-        return { student: this.studentService.createStudent(req, addStudent) }
+        return { student: this.studentService.createStudent(addStudent) }
     }
 
     @Post('update')

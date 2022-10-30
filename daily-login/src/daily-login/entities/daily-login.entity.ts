@@ -1,14 +1,14 @@
 import { Student } from 'src/student/entities/student.entity'
-import { PrimaryColumn, Column, ManyToOne, Entity } from 'typeorm'
+import { PrimaryColumn, Column, OneToOne, Entity } from 'typeorm'
 
 @Entity()
 export class DailyLogin {
     @PrimaryColumn()
-    @ManyToOne((cardId) => Student, (cardId) => cardId.cardId)
+    @OneToOne((cardId) => Student, (cardId) => cardId.cardId)
     cardId: string
 
     @Column()
-    signIn: Boolean
+    signIn: boolean
 
     @Column()
     signInDate: Date

@@ -1,26 +1,31 @@
-import { Injectable } from '@nestjs/common';
-import { CreateDailyLoginDto } from './dto/create-daily-login.dto';
-import { UpdateDailyLoginDto } from './dto/update-daily-login.dto';
+import { Injectable } from '@nestjs/common'
+import { InjectRepository } from '@nestjs/typeorm'
+import { Repository } from 'typeorm'
+import { CreateDailyLoginDto } from './dto/create-daily-login.dto'
+import { DailyLogin } from './entities/daily-login.entity'
 
 @Injectable()
 export class DailyLoginService {
-  create(createDailyLoginDto: CreateDailyLoginDto) {
-    return 'This action adds a new dailyLogin';
-  }
+    constructor(
+        @InjectRepository(DailyLogin)
+        private dailyLoginRepository: Repository<DailyLogin>
+    ) {}
 
-  findAll() {
-    return `This action returns all dailyLogin`;
-  }
+    async createDailyLogin(dailyLoginDto: CreateDailyLoginDto) {
+        const dateToday = new Date()
+        dailyLoginDto.signIn = true
+        dailyLoginDto.signInDate = dateToday
+        console.log(dateToday)
+        return await {
+            dailyLogin: this.dailyLoginRepository.save(dailyLoginDto)
+        }
+    }
 
-  findOne(id: number) {
-    return `This action returns a #${id} dailyLogin`;
-  }
+    findAll() {
+        return
+    }
 
-  update(id: number, updateDailyLoginDto: UpdateDailyLoginDto) {
-    return `This action updates a #${id} dailyLogin`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} dailyLogin`;
-  }
+    findOne(id: number) {
+        // return `This action returns a #${id} dailyLogin`
+    }
 }

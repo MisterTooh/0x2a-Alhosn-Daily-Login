@@ -1,12 +1,14 @@
-import { IsBoolean, IsDate, IsString } from 'class-validator'
+import { IsBoolean, IsNumber, IsOptional, IsString } from 'class-validator'
 
 export class CreateDailyLoginDto {
     @IsString()
     cardId: string
 
     @IsBoolean()
-    signIn: Boolean
+    @IsOptional()
+    signIn: boolean
 
-    @IsDate()
+    @IsNumber()
+    @IsOptional()
     signInDate: Date
 }
