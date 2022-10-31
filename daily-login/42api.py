@@ -3,6 +3,7 @@ import sys
 from http import HTTPStatus
 from time import sleep
 import pandas
+import urllib.request
 
 # CONFIGURATION MACROS *** ENTER CREDRNTIALS HERE ****
 BASE_URL = "https://api.intra.42.fr"
@@ -12,7 +13,7 @@ N_LIST_EXAMS = 5
 N_DAYS_LOCATIONS = 7
 N_PAST_LOCATIONS = 3
 HALF_LAB = False
-
+# !!!!Credentials revoked the above needs to be placed in a .env that is also placed in a .ignore!!!!
 
 def get_token():
 	if not UID and not SECRET:
@@ -54,6 +55,12 @@ def drop(x):
 	if not isinstance(x["usual_full_name"],float):
 		return x
 
+def funct(out):
+	try:
+		return requests.post("http://localhost:3000/student/addarray",params=out,timeout=10)
+	except (ConnectionError, ReadTimeout) as error:
+		print(error)
+		function(out)
 if __name__ == "__main__":
 	# print("GETTING API TOKEN ... \n")
 	# token = get_token()
@@ -94,8 +101,14 @@ if __name__ == "__main__":
 	df4 = pandas.merge(df_users,df2, how="left",on="login")
 	df4 = df4.reset_index(drop=True)
 	df4 = df4.rename(columns={"login" : "loginName", "usual_full_name" : "fullName","image_url" : "imageUrl", "active?" : "status" , "reason" : "closeReason"})
-	df4=df4[["loginName","fullName","imageUrl","status","closeReason"]]
+	df4["cardId"]=""
+	df4["UID"]=0
+	df4["alhosnStatus"]=False
+	df4["status"]=False
+	df4=df4[["fullName","cardId","loginName","UID","alhosnStatus","status","closeReason"]]
+	df4=df4.head()
 	print(df4)
 	out = df4.to_json(orient='records')
-	res = requests.post("http://localhost:8080/student/addArray",params=out)
+	print(out)
+	res=requests.post("http://localhost:3000/student/addArray",params={"fullName":"idk","cardId":"hdsudsud","loginName":"jdasd","UID":142,"alhosnStatus":False,"status":False,"closeReason":"jdsuhdsuj"})
 	print(res.text)

@@ -19,23 +19,18 @@ export class StudentService {
 
     private async findOrCreate(studentDto: CreateStudentDto, cardId: string) {
         const student = await this.studentRepository.findOneBy({ cardId })
-        if (student) {
-            return { student }
-        } else
-            return await { studentDto: this.studentRepository.save(studentDto) }
+        if (student) return
+        else this.studentRepository.save(studentDto)
     }
 
     createStudent(studentDto: CreateStudentDto) {
-        return {
-            student: this.findOrCreate(studentDto, studentDto.cardId)
-        }
+        this.findOrCreate(studentDto, studentDto.cardId)
     }
 
-    async findOne(cardId: string) {
+    async findOne(@Param() cardId: string) {
         const student = await this.studentRepository.findOneBy({ cardId })
         return { student }
     }
-
     editStudent(cardId: string, editStudent: UpdateStudentDto) {
         return this.findAndUpdateStudent(cardId, editStudent)
     }

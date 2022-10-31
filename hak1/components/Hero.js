@@ -26,19 +26,16 @@ export default function Hero() {
     };
 
     //fetching data from "STUDENTID" from server 
-    const fetchStudentData = async event => {
+    const fetchStudentData = async () => {
         setLoading(true);
-        var s =  "http://localhost:8080/student/search?cardId=" + studentID;
+        var s = "http://localhost:3000/student/search"
+        const d =  await fetch(s)
+        console.log(d)
+        const dd = await d.json();
+       console.log(dd.student);    
+        setData(dd.student);
+        setLoading(false);
         setStudentID('');
-        console.log('SSSSS', s);
-        var d = await fetch(s, {mode: 'no-cors'})
-        console.log(d);
-        // .then((res) => res.json())
-        // .then((data) => {
-        //     setData(data);
-        //     setLoading(false);
-        // });
-        console.log('handleClick 👉️', data);
     };
 
     //Return while fatching
@@ -85,6 +82,12 @@ export default function Hero() {
                          {data.UID}
                         </div>
                     </div>
+                    {/* <div>
+                        <label className="block text-sm font-medium ">DATE</label>
+                        <div className="text-white bg-[#A3ABAA] px-8 py-2 rounded-lg text-xl font-bold flex items-center">
+                         {data.date}
+                        </div>
+                    </div> */}
                 </div>
 
 
@@ -118,7 +121,11 @@ export default function Hero() {
                     <div>
                         <label className="block text-sm font-medium ">STATUS</label>
                         <div className="text-white bg-[#A3ABAA] px-8 py-2 rounded-lg text-xl font-bold flex items-center">
-                         {data.status}
+                        {
+                                data.status
+                                ? <h1 className="">ACTIVE</h1>
+                                : <h1 className="">INACTIVE</h1>
+                            }
                         </div>
                     </div>
                     <div>

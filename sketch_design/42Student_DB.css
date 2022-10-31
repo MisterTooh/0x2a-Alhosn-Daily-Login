@@ -1,0 +1,544 @@
+#dATABASE {
+  position: absolute;
+  left: 1871px;
+  top: -501px;
+  width: 1920px;
+  height: 1080px;
+  background: #373636}
+
+#iNTRALOGIN {
+  position: absolute;
+  left: 1460px;
+  top: 235px;
+  width: 298px;
+  height: 115px;
+}
+
+#rectangle2 {
+  position: absolute;
+  left: 0px;
+  top: 51px;
+  width: 298px;
+  height: 64px;
+  border-radius: 10px;
+  background: #d9d9d9;
+  background-blend-mode: normal;
+}
+
+#ykulkarn {
+  position: absolute;
+  left: 0px;
+  top: 51px;
+  width: 298px;
+  height: 64px;
+  font-family: Inter;
+  font-size: 32px;
+  font-weight: 400;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+#iNTRALOGIN {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 298px;
+  height: 47px;
+  color: #ffffff;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+#sTATUS {
+  position: absolute;
+  left: 159px;
+  top: 445px;
+  width: 298px;
+  height: 111px;
+}
+
+#rectangle5 {
+  position: absolute;
+  left: 0px;
+  top: 47px;
+  width: 298px;
+  height: 64px;
+  border-radius: 10px;
+  background: #d9d9d9;
+  background-blend-mode: normal;
+}
+
+#rectangle6 {
+  position: absolute;
+  left: 0px;
+  top: 47px;
+  width: 298px;
+  height: 64px;
+  border-radius: 10px;
+  background: #d9d9d9;
+  background-blend-mode: normal;
+}
+
+#active {
+  position: absolute;
+  left: 0px;
+  top: 47px;
+  width: 298px;
+  height: 64px;
+  font-family: Inter;
+  font-size: 32px;
+  font-weight: 400;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+#sTATUS {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 298px;
+  height: 47px;
+  color: #ffffff;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+#uID {
+  position: absolute;
+  left: 159px;
+  top: 650.2px;
+  width: 298px;
+  height: 111px;
+}
+
+#rectangle2 {
+  position: absolute;
+  left: 0px;
+  top: 47px;
+  width: 298px;
+  height: 64px;
+  border-radius: 10px;
+  background: #d9d9d9;
+  background-blend-mode: normal;
+}
+
+#a {
+  position: absolute;
+  left: 0px;
+  top: 47px;
+  width: 298px;
+  height: 64px;
+  font-family: Inter;
+  font-size: 32px;
+  font-weight: 400;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+#uID {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 298px;
+  height: 47px;
+  color: #ffffff;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+#nAME {
+  position: absolute;
+  left: 811px;
+  top: 235px;
+  width: 298px;
+  height: 115px;
+}
+
+#rectangle2 {
+  position: absolute;
+  left: 0px;
+  top: 51px;
+  width: 298px;
+  height: 64px;
+  border-radius: 10px;
+  background: #d9d9d9;
+  background-blend-mode: normal;
+}
+
+#rectangle4 {
+  position: absolute;
+  left: 0px;
+  top: 51px;
+  width: 298px;
+  height: 64px;
+  border-radius: 10px;
+  background: #d9d9d9;
+  background-blend-mode: normal;
+}
+
+#yashKulkar {
+  position: absolute;
+  left: 0px;
+  top: 51px;
+  width: 298px;
+  height: 64px;
+  font-family: Inter;
+  font-size: 32px;
+  font-weight: 400;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+#nAME {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 298px;
+  height: 47px;
+  color: #ffffff;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+#dATE {
+  position: absolute;
+  left: 1460px;
+  top: 453px;
+  width: 298px;
+  height: 111px;
+}
+
+#rectangle6 {
+  position: absolute;
+  left: 0px;
+  top: 47px;
+  width: 298px;
+  height: 64px;
+  border-radius: 10px;
+  background: #d9d9d9;
+  background-blend-mode: normal;
+}
+
+#a {
+  position: absolute;
+  left: 0px;
+  top: 47px;
+  width: 298px;
+  height: 64px;
+  font-family: Inter;
+  font-size: 32px;
+  font-weight: 400;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+#dATE {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 298px;
+  height: 47px;
+  color: #ffffff;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+#tIME {
+  position: absolute;
+  left: 1460px;
+  top: 667px;
+  width: 298px;
+  height: 111px;
+}
+
+#rectangle6 {
+  position: absolute;
+  left: 0px;
+  top: 47px;
+  width: 298px;
+  height: 64px;
+  border-radius: 10px;
+  background: #d9d9d9;
+  background-blend-mode: normal;
+}
+
+#pM {
+  position: absolute;
+  left: 0px;
+  top: 47px;
+  width: 298px;
+  height: 64px;
+  font-family: Inter;
+  font-size: 32px;
+  font-weight: 400;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+#tIME {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 298px;
+  height: 47px;
+  color: #ffffff;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+#iDNO. {
+  position: absolute;
+  left: 159px;
+  top: 235px;
+  width: 298px;
+  height: 115px;
+}
+
+#group {
+  position: absolute;
+  left: 0px;
+  top: 51px;
+  width: 298px;
+  height: 64px;
+}
+
+#rectangle3 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 298px;
+  height: 64px;
+  border-radius: 10px;
+  background: #d9d9d9;
+  background-blend-mode: normal;
+}
+
+#a {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 298px;
+  height: 64px;
+  font-family: Inter;
+  font-size: 32px;
+  font-weight: 400;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+#iDNO. {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 298px;
+  height: 47px;
+  color: #ffffff;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+#aPPROVE {
+  position: absolute;
+  left: 1039px;
+  top: 922px;
+  width: 268px;
+  height: 62px;
+  box-shadow: 0px 2px 4px;
+}
+
+#rectangle8 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 268px;
+  height: 62px;
+  border-radius: 8px;
+  background: #7d04dd;
+  background-blend-mode: normal;
+}
+
+#aPPROVE {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 268px;
+  height: 62px;
+  color: #ffffff;
+  font-family: Inter;
+  font-size: 26px;
+  font-weight: 400;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+#rEJECT {
+  position: absolute;
+  left: 614px;
+  top: 922px;
+  width: 268px;
+  height: 62px;
+  box-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+}
+
+#rectangle1 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 268px;
+  height: 62px;
+  border-radius: 10px;
+  background: #000000;
+  background-blend-mode: normal;
+}
+
+#rEJECT {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 268px;
+  height: 62px;
+  color: #ffffff;
+  font-family: Inter;
+  font-size: 26px;
+  font-weight: 400;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+#gREENPASS {
+  position: absolute;
+  left: 748px;
+  top: 419px;
+  width: 421px;
+  height: 409px;
+}
+
+#rectangle2 {
+  position: absolute;
+  left: 73px;
+  top: 0px;
+  width: 278px;
+  height: 318px;
+  border-radius: 10px;
+  background: #086107;
+  background-blend-mode: normal;
+}
+
+#photo_plac {
+  position: absolute;
+  left: 90px;
+  top: 17px;
+  width: 245px;
+  height: 284px;
+  background:  url(photo_placeholder.png)  no-repeat;
+}
+
+#nEGATIVE:1 {
+  position: absolute;
+  left: 0px;
+  top: 339px;
+  width: 421px;
+  height: 70px;
+  color: #30cb2e;
+  font-family: Inter;
+  font-size: 36px;
+  font-weight: 400;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+#aDLogo {
+  position: absolute;
+  left: 159px;
+  top: 71px;
+  width: 286.27px;
+  height: 99px;
+}
+
+#aDLogo {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 286.27px;
+  height: 99px;
+  background:  url(42ADLogo.png)  no-repeat;
+}
+
+#sTUDENTDAT {
+  position: absolute;
+  left: 756px;
+  top: 87px;
+  width: 408px;
+  height: 83px;
+}
+
+#sTUDENTDAT {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 408px;
+  height: 83px;
+  color: #00eaff;
+  font-family: Inter;
+  font-size: 36px;
+  font-weight: 400;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+#aDEK-logo- {
+  position: absolute;
+  left: 1438px;
+  top: 66px;
+  width: 342.15px;
+  height: 109.4px;
+}
+
+#aDEK-logo- {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 342.15px;
+  height: 109.4px;
+  background:  url(ADEK-logo-175x55-30px.png)  no-repeat;
+}
+

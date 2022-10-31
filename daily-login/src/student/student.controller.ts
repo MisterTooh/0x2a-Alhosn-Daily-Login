@@ -5,7 +5,9 @@ import {
     Get,
     Param,
     Req,
-    ParseArrayPipe
+    ParseArrayPipe,
+    HttpCode,
+    Patch
 } from '@nestjs/common'
 import { CreateStudentDto } from './dto/create-student-dto'
 import { UpdateStudentDto } from './dto/update-student-to'
@@ -17,16 +19,12 @@ export class StudentController {
     constructor(private readonly studentService: StudentService) {}
 
     @Post('add')
-    async addStudent(
-        @Req() req: Request,
-        @Body() addStudent: CreateStudentDto
-    ) {
-        return { student: this.studentService.createStudent(addStudent) }
+    async addStudent(@Body() addStudent: CreateStudentDto) {
+        this.studentService.createStudent(addStudent)
     }
 
-    @Post('addArray')
-    async addArray(
-        @Req() req: Request,
+    @Post('addMany')
+    async addMany(
         @Body(
             new ParseArrayPipe({
                 items: CreateStudentDto
@@ -37,26 +35,22 @@ export class StudentController {
         for (const addStudent of addStudents) {
             const student = this.studentService.createStudent(addStudent)
         }
-        return {}
     }
 
-    @Post('update')
+    @Patch('update')
     async updateStudent(
         @Req() req: Request,
         @Body() updateStudent: UpdateStudentDto
     ) {
-        return this.studentService.editStudent(
-            updateStudent.cardId,
-            updateStudent
-        )
+        this.studentService.editStudent(updateStudent.cardId, updateStudent)
     }
-
     @Get('search')
+    @HttpCode(200)
     async findStudent(
         @Req() req: Request,
         @Body() findStudent: Student,
         @Param() cardId: string
     ) {
-        return this.studentService.findOne(cardId)
+        return await this.studentService.findOne(findStudent.cardId)
     }
 }
